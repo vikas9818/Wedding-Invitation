@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#3a3e2e">
+<title>Vikas & Divya — Wedding Invitation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&family=Pinyon+Script&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="lock">
+<canvas id="fx" aria-hidden="true"></canvas>
+<audio id="bgm" loop preload="none" src="music.mp3"></audio>
+<button id="mute" aria-label="Toggle music" hidden>♪</button>
+
+<div id="cover">
+  <p class="sw">Sealed with love by</p>
+  <p class="script cn">Vikas &amp; Divya</p>
+  <div class="flap"></div>
+  <button id="seal" aria-label="Unseal the invitation">
+    <svg viewBox="0 0 60 60" width="58" height="58" fill="none" stroke="#9a7b3c" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M30 52C30 40 31 28 37 10"/><path d="M30 42c-9 0-12-6-12-10 8 0 12 4 12 10z"/><path d="M32 33c8-1 11-6 11-10-8 0-11 5-11 10z"/><path d="M34 23c-6-2-8-6-6-10 6 2 7 6 6 10z"/></svg>
+  </button>
+  <button class="unseal" id="open">Click to unseal</button>
+</div>
+
+<header id="hero">
+  <img class="mono" src="images/monogram.png" alt="V and D monogram" width="260" height="260">
+  <p class="eyebrow g1">Together with their families</p>
+  <h1 class="names g2"><span id="n1"></span><em>&amp;</em><span id="n2"></span></h1>
+  <p class="date g3" id="heroDate"></p>
+  <div class="scroll g3" aria-hidden="true">&#8964;</div>
+</header>
+
+<main>
+<section id="scratch" class="c">
+  <p class="script rv">Scratch to reveal</p>
+  <div class="heart rv" id="heartBox">
+    <div class="hr"><span class="script">You're invited</span><b id="rvDate"></b><i id="rvDay"></i></div>
+    <canvas id="sc"></canvas>
+  </div>
+  <p class="hint rv" id="scHint">Scratch the heart to continue</p>
+</section>
+
+<div id="rest" hidden>
+<section id="family" class="c alt">
+  <p class="eyebrow rv">With the blessings of</p>
+  <h2 class="rv">Our families</h2>
+  <div class="fam" id="famList"></div>
+</section>
+
+<section id="welcome" class="c">
+  <p class="eyebrow rv">With joy in our hearts</p>
+  <h2 class="rv">Welcome</h2>
+  <div class="arch rv" id="couple"></div>
+  <p class="msg rv" id="msg"></p>
+  <div id="vid"></div>
+</section>
+
+<section id="count" class="c alt">
+  <h2 class="rv">Counting down to forever</h2>
+  <div class="cd rv">
+    <div><b id="d">0</b><span>Days</span></div><div><b id="h">0</b><span>Hours</span></div>
+    <div><b id="m">0</b><span>Mins</span></div><div><b id="s">0</b><span>Secs</span></div>
+  </div>
+</section>
+
+<section id="story" class="c">
+  <p class="eyebrow rv">Our story</p>
+  <h2 class="rv">How it began</h2>
+  <div class="story" id="storyList"></div>
+</section>
+
+<section id="events" class="c alt">
+  <p class="eyebrow rv">Celebrations</p>
+  <h2 class="rv">Wedding events</h2>
+  <div class="events" id="eventList"></div>
+</section>
+
+<section id="gallery" class="c">
+  <p class="eyebrow rv">Moments</p>
+  <h2 class="rv">Gallery</h2>
+  <div class="masonry" id="grid"></div>
+</section>
+
+<section id="venue" class="c alt">
+  <p class="eyebrow rv">Find us</p>
+  <h2 class="rv">Venue &amp; directions</h2>
+  <p class="rv"><strong id="vName"></strong><br><span id="vAddr"></span></p>
+  <div class="info rv"><div><h3>Parking</h3><p id="park"></p></div><div><h3>Accommodation</h3><p id="stay"></p></div></div>
+</section>
+
+<section id="rsvp" class="c">
+  <p class="eyebrow rv">RSVP</p>
+  <h2 class="rv">Will you join us?</h2>
+  <form id="form" class="rv" novalidate>
+    <label>Guest name<input id="gName" required autocomplete="name" placeholder="Full name"></label>
+    <label>Number of guests<select id="gCount"></select></label>
+    <fieldset><legend>Events you'll attend</legend><div id="gEvents"></div></fieldset>
+    <fieldset><legend>Food preference</legend><div id="gFood"></div></fieldset>
+    <label>Message for the couple (optional)<textarea id="gMsg" rows="2"></textarea></label>
+    <p class="err" id="err" role="alert"></p>
+    <button class="btn" type="submit" id="sub">Submit RSVP</button>
+  </form>
+  <p class="thanks" id="thanks" hidden>Thank you! Your RSVP has been sent to the couple. We can't wait to celebrate with you.</p>
+</section>
+</div>
+</main>
+
+<footer id="final">
+  <img class="mono sm" src="images/monogram.png" alt="" width="110" height="110">
+  <p class="eyebrow">A final blessing</p>
+  <p class="bless" id="bless"></p>
+  <h2 id="fNames"></h2>
+  <p class="date" id="fDate"></p>
+  <p class="script love">With Love</p>
+</footer>
+
+<div id="lb" hidden role="dialog" aria-label="Photo viewer">
+  <button id="lbX" aria-label="Close">&times;</button>
+  <button id="lbP" aria-label="Previous">&#8249;</button>
+  <img id="lbImg" alt="">
+  <button id="lbN" aria-label="Next">&#8250;</button>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
